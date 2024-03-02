@@ -17,7 +17,7 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests pytz timezonefinder colorama
       - name: Run the script
-        run: python get_vessel_time.py | tee output.txt
+        run: python shiptime.py | tee output.txt
       - name: Get Local Time
         run: |
           local_time=$(cat output.txt | grep Local\ Time: | cut -d ':' -f 2-)
