@@ -1,11 +1,12 @@
-name: Ship Time Update
+name: Continuous Ship Time Update
 
 on:
-  schedule:
-    - cron: '0 * * * *' # Runs every hour
+  push:
+    branches:
+      - main
 
 jobs:
-  update_ship_time:
+  continuous_ship_time_update:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +22,11 @@ jobs:
         run: |
           pip install timezonefinder pytz requests colorama
 
-      - name: Run Python script
-        run: python shiptime.py > output.txt
-
-      - name: Publish Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ship_output
-          path: output.txt
+      - name: Run Python script every second
+        run: |
+          i=0
+          while [ $i -lt 60 ]; do
+            python shiptime.py > output_$i.txt
+            sleep 1
+            ((i++))
+          done
