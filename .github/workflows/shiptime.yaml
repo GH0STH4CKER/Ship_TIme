@@ -1,0 +1,16 @@
+name: Get Vessel Local Time
+
+on:
+  # Run on push to main branch
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Python dependencies
+        run: pip install requests pytz timezonefinder colorama
+      - name: Run the script
+        run: python shiptime.py
