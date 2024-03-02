@@ -15,10 +15,6 @@ response = requests.get(url, headers=headers)
 data = json.loads(response.text)
 
 lon,lat = data[0]['position']['geometry']['coordinates']
-timestamp_ms = data[0]['position']['properties']['timestamp']
-
-timestamp_seconds = timestamp_ms / 1000  # Convert milliseconds to seconds
-datetime_obj = datetime.datetime.utcfromtimestamp(timestamp_seconds) + datetime.timedelta(hours=5, minutes=30)
 
 def get_local_time(latitude, longitude):
     # Initialize TimezoneFinder object
@@ -44,4 +40,4 @@ if lon and lat:
 
     local_time = get_local_time(latitude, longitude)
     print(Fore.GREEN+"Local Time:", local_time)
-    print('\nShip Location Updated Time:', datetime_obj,timestamp_ms)
+
