@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: main  # specify the branch name to checkout
 
       - name: Set up Python
         uses: actions/setup-python@v3
