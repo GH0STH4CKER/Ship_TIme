@@ -14,11 +14,17 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: main  # specify the branch name to checkout
+        runs:
+          using: 'node20'
+          main: 'main.js'
 
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
+        runs:
+          using: 'node20'
+          main: 'main.js'
 
       - name: Install dependencies
         run: |
